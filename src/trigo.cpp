@@ -5,7 +5,15 @@
 ** 108trigo
 */
 
+//libC
+#include <iostream>
+
+//mylibs
 #include "trigo.h"
+
+//namespaces
+using namespace std;
+
 
 int trigo(void)
 {

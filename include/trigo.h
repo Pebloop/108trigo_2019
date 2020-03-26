@@ -10,4 +10,6 @@
 
 int trigo(void);
 
+void display_number_with_space(float nb, int space);
+
 #endif /*TRIGO_H*/

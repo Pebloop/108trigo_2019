@@ -1,15 +1,17 @@
 .PHONY = debug retest re
 
-SRC =   src/trigo.c
+SRC =   src/trigo.cpp		\
+		src/matrix.cpp		\
+		src/displaying.cpp	\
 
-MAIN =  main.c
+MAIN =  main.cpp
 
-OBJ =   $(SRC:.c=.o)
+OBJ =   $(SRC:.cpp=.o)
 
-MAIN_OBJ =  $(MAIN:.c=.o)
+MAIN_OBJ =  $(MAIN:.cpp=.o)
 
 
-CFLAGS = -Iinclude/ \
+CXXFLAGS = -Iinclude/ -fdiagnostics-color \
 
 NAME =  108trigo
 
@@ -32,13 +34,13 @@ $(NAME): make_lib $(OBJ) $(MAIN_OBJ)
 	@echo ' ___  ___  ___  / |  / . \|     || . \| || |/ ._> | . \|  _>/ . \/ . ||  _><_> ||     |  ___  ___  ___'
 	@echo '|___||___||___| \_|_.\___/|_|_|_||  _/|_||_|\___. |  _/|_|  \___/\_. ||_|  <___||_|_|_| |___||___||___|'
 	@echo '                                 |_|              |_|            <___|'
-	gcc -o $(NAME) $(MAIN_OBJ) $(OBJ) $(CFLAGS)
+	g++ -o $(NAME) $(MAIN_OBJ) $(OBJ) $(CXXFLAGS)
 
 debug: make_lib $(OBJ) $(MAIN_OBJ)
-	gcc -g3 -o $(DEBUG) $(MAIN_OBJ) $(OBJ) $(CFLAGS)
+	g++ -g3 -o $(DEBUG) $(MAIN_OBJ) $(OBJ) $(CXXFLAGS)
 
 tests_run: make_lib
-	gcc -o $(TEST) $(OBJ) $(CFLAGS)
+	g++ -o $(TEST) $(OBJ) $(CXXFLAGS)
 	./$(TEST)
 
 retest: fclean tests_run
